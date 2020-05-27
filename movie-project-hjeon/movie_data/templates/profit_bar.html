@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1" name="viewport">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Profit: Bar Graphs</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.min.js"></script>
+  <!-- Plotly -->
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <!-- Boostrap Stylesheet -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" media="screen">
+  <!-- Our own CSS stylesheet -->
+  <link rel="stylesheet" href="../static/css/styles.css" media="screen">
+  <!-- Bideo -->
+  <script src="https://use.typekit.net/nlq1kdt.js"></script>
+  <script>try{Typekit.load({ async: true });}catch(e){}</script>
+</head>
+
+<body>
+<!-- Bideo Background -->
+  <div id="container">
+    <video id="background_video" loop muted></video>
+    <div id="video_cover"></div>
+    <div id="overlay"></div>
+    <div id="video_controls">
+      <span id="play"></span>
+      <span id="pause"></span>
+    </div>
+  </div>
+
+<!-- Header -->
+  <div id="container">
+        <div id="main_header">
+          <h1>What Factors Affect the Profit of a Movie?</h1>
+          <h2>Profit vs</h2>
+        </div>
+  </div>
+
+<!--Bar Graphs-->
+  <div class="container-fluid">
+    <div class="row">
+        <!-- Production Company v Profit-->
+        <div id="main_graphs">
+            <h3>Production Companies</h3>
+            <script type="text/javascript">window.PlotlyConfig = {MathJaxConfig: 'local'};</script>
+            <script type="text/javascript" src="../static/js/company_text.js"></script>
+            <div id="6950e159-6421-41fe-bc23-cb0ca8dc062b" class="plotly-graph-div" style="height:500px; width:100%;"></div>
+            <script type="text/javascript" src="../static/js/plot.js"></script>
+        </div>
+        <!-- Genre v Profit-->
+        <div id="main_graphs">
+            <h3>Genres</h3>
+            <script type="text/javascript">window.PlotlyConfig = {MathJaxConfig: 'local'};</script>
+            <script type="text/javascript" src="../static/js/genre_text.js"></script>
+            <div id="769ee26e-9c1c-4bc9-b641-75e4fade59c5" class="plotly-graph-div" style="height:500px; width:100%;"></div>
+            <script type="text/javascript" src="../static/js/plot.js"></script>
+        </div>
+        <!-- Director v Profit-->
+        <div id="main_graphs">
+            <h3>Directors</h3>
+            <script type="text/javascript">window.PlotlyConfig = {MathJaxConfig: 'local'};</script>
+            <script type="text/javascript" src="../static/js/director_text.js"></script>
+            <div id="dfc4a1b6-2c5a-448d-860a-1e9756fc4b32" class="plotly-graph-div" style="height:500px; width:100%;"></div>
+            <script type="text/javascript" src="../static/js/plot.js"></script>
+        </div>
+    </div>
+  </div>
+
+<!-- Footer -->
+  <div id="footer">
+    <section>
+      <div id="links">
+        <a href="top_movies.html">Top Movies</a>
+        <a href="release_date.html">Release Date</a>
+        <a href="profit_bubble.html">Profit: Bubble Charts</a>
+        <a href="">Profit: Bar Graphs</a>
+        <a href="movie_search.html">Movie Search</a>
+        <a href="movie_data.html">Data</a>
+      </div>
+    </section>
+  </div>
+
+<!-- Attached scripts -->
+  <script src="../static/js/bideo.js"></script>
+  <script src="../static/js/main.js"></script>
+  <script>
+    if (window.location.host.indexOf('github.io') !== -1 && window.location.protocol !== "https:") {
+      window.location.protocol = "https";
+    }
+  </script>
+
+</body>
+</html>

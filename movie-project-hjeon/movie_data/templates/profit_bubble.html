@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1" name="viewport">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Profit: Bubble Charts</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.min.js"></script>
+  <!-- Plotly -->
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <!-- Boostrap Stylesheet -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" media="screen">
+  <!-- Our own CSS stylesheet -->
+  <link rel="stylesheet" href="../static/css/styles.css" media="screen">
+  <!-- Bideo -->
+  <script src="https://use.typekit.net/nlq1kdt.js"></script>
+  <script>try{Typekit.load({ async: true });}catch(e){}</script>
+</head>
+
+<body>
+<!-- Bideo Background -->
+  <div id="container">
+    <video id="background_video" loop muted></video>
+    <div id="video_cover"></div>
+    <div id="overlay"></div>
+    <div id="video_controls">
+      <span id="play"></span>
+      <span id="pause"></span>
+    </div>
+  </div>
+
+<!-- Header -->
+  <div id="container">
+        <div id="main_header">
+          <h1>What Factors Affect the Profit of a Movie?</h1>
+          <h2>Profit vs</h2>
+        </div>
+  </div>
+
+<!--Bubble Charts-->
+  <div class="container-fluid">
+    <div class="row">
+        <!-- Budget v Profit -->
+        <div id="main_charts">
+            <h3>Budget</h3>
+            <div id="myDiv1"></div>
+            <script>
+            Plotly.d3.csv(
+                "https://raw.githubusercontent.com/RHaile/project-2/master/Resources/cleanedmovies.csv",
+                function(rows) {
+                    var x = [],
+                      y = [],
+                      s = [],
+                      c = [],
+                      t = [];
+          
+                    for (var i = 0; i < rows.length; i++) {
+                      row = rows[i];
+                      y.push(row["profit"]);
+                      x.push(row["budget"]);
+                      s.push(row["revenue"]);
+                      c.push(row["genre"]);
+                      t.push(row["title"]);
+                    }
+          
+                    Plotly.newPlot('myDiv1', {
+                        data: [
+                            {
+                                type: "scatter",
+                                mode: "markers",
+                                x: x,
+                                y: y,
+                                text: t,
+                                marker: { size: s, sizeref: 1000000, sizemode: "area" },
+                                transforms: [{ type: "groupby", groups: c }],
+                                hovertemplate:
+                                  "<b>%{text}</b><br><br>" +
+                                  "%{yaxis.title.text}: %{y:$,.0f}<br>" +
+                                  "%{xaxis.title.text}: %{x:$,.0f}<br>" +
+                                  "<extra></extra>"
+                            }
+                        ],
+                        layout: {
+                            hovermode: "closest",
+                            hoverlabel: { bgcolor: "#FFF" },
+                            legend: {
+                                x: 1.5,
+                                y: 1,
+                                xanchor: 'right',
+                                orientation: 'v',
+                                font: {
+                                  family: 'sans-serif',
+                                  size: 10
+                                  },
+                                },
+                            xaxis: {
+                                title: "Budget",
+                                zeroline: false
+                            },
+                            yaxis: {
+                                title: "Profit",
+                                zeroline: true
+                            }
+                        },
+                        config: { responsive: true }
+                    });
+                }
+            );
+                 
+            </script>
+        </div>
+        <!-- Runtime v Profit -->
+        <div id="main_charts">
+            <h3>Runtime</h3>
+            <div id="myDiv2"></div>
+            <script>
+            Plotly.d3.csv(
+                "https://raw.githubusercontent.com/RHaile/project-2/master/Resources/cleanedmovies.csv",
+                function(rows) {
+                    var x = [],
+                      y = [],
+                      s = [],
+                      c = [],
+                      t = [];
+          
+                    for (var i = 0; i < rows.length; i++) {
+                      row = rows[i];
+                      y.push(row["profit"]);
+                      x.push(row["runtime"]);
+                      s.push(row["revenue"]);
+                      c.push(row["genre"]);
+                      t.push(row["title"]);
+                    }
+          
+                    Plotly.newPlot('myDiv2', {
+                        data: [
+                            {
+                                type: "scatter",
+                                mode: "markers",
+                                x: x,
+                                y: y,
+                                text: t,
+                                marker: { size: s, sizeref: 1000000, sizemode: "area" },
+                                transforms: [{ type: "groupby", groups: c }],
+                                hovertemplate:
+                                  "<b>%{text}</b><br><br>" +
+                                  "%{yaxis.title.text}: %{y:$,.0f}<br>" +
+                                  "%{xaxis.title.text}: %{x:,.0f} Minutes<br>" +
+                                  "<extra></extra>"
+                            }
+                        ],
+                        layout: {
+                            hovermode: "closest",
+                            hoverlabel: { bgcolor: "#d0ec68" },
+                            legend: {
+                                x: 1.5,
+                                y: 1,
+                                xanchor: 'right',
+                                orientation: 'v',
+                                font: {
+                                  family: 'sans-serif',
+                                  size: 10
+                                  },
+                                },
+                            xaxis: {
+                                title: "Runtime",
+                                zeroline: false
+                            },
+                            yaxis: {
+                                title: "Profit",
+                                zeroline: true
+                            }
+                        },
+                        config: { responsive: true }
+                    });
+                }
+            );
+                 
+            </script>
+        </div>
+        <!-- Ratings v Profit -->
+        <div id="main_charts">
+            <h3>Ratings</h3>
+            <div id="myDiv3"></div>
+            <script>
+                Plotly.d3.csv(
+                    "https://raw.githubusercontent.com/RHaile/project-2/master/Resources/cleanedmovies.csv",
+                    function(rows) {
+                        var x = [],
+                          y = [],
+                          s = [],
+                          c = [],
+                          t = [];
+              
+                        for (var i = 0; i < rows.length; i++) {
+                          row = rows[i];
+                          y.push(row["profit"]);
+                          x.push(row["vote_average"]);
+                          s.push(row["revenue"]);
+                          c.push(row["genre"]);
+                          t.push(row["title"]);
+                        }
+              
+                        Plotly.newPlot('myDiv3', {
+                            data: [
+                                {
+                                    type: "scatter",
+                                    mode: "markers",
+                                    x: x,
+                                    y: y,
+                                    text: t,
+                                    marker: { size: s, sizeref: 1000000, sizemode: "area" },
+                                    transforms: [{ type: "groupby", groups: c }],
+                                    hovertemplate:
+                                      "<b>%{text}</b><br><br>" +
+                                      "%{yaxis.title.text}: %{y:$,.0f}<br>" +
+                                      "%{xaxis.title.text}: %{x:.1f}<br>" +
+                                      "<extra></extra>"
+                                }
+                            ],
+                            layout: {
+                                hovermode: "closest",
+                                hoverlabel: { bgcolor: "#e5756f" },
+                                legend: {
+                                x: 1.5,
+                                y: 1,
+                                xanchor: 'right',
+                                orientation: 'v',
+                                font: {
+                                  family: 'sans-serif',
+                                  size: 10
+                                  },
+                                },
+                                xaxis: {
+                                    title: "Rating",
+                                    zeroline: false
+                                },
+                                yaxis: {
+                                    title: "Profit",
+                                    zeroline: true
+                                }
+                            },
+                            config: { responsive: true }
+                        });
+                    }
+                );
+                     
+                </script>
+        </div>
+    </div>
+  </div>
+
+<!-- Footer -->
+  <div id="footer">
+    <section>
+      <div id="links">
+        <a href="top_movies.html">Top Movies</a>
+        <a href="release_date.html">Release Date</a>
+        <a href="">Profit: Bubble Charts</a>
+        <a href="profit_bar.html">Profit: Bar Graphs</a>
+        <a href="movie_search.html">Movie Search</a>
+        <a href="movie_data.html">Data</a>
+      </div>
+    </section>
+  </div>
+
+<!-- Attached scripts -->
+  <script src="../static/js/bideo.js"></script>
+  <script src="../static/js/main.js"></script>
+  <script>
+    if (window.location.host.indexOf('github.io') !== -1 && window.location.protocol !== "https:") {
+      window.location.protocol = "https";
+    }
+  </script>
+
+</body>
+</html>
